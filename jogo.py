@@ -2,8 +2,14 @@ import pygame, sys, random
 
 # Inicialização do Pygame
 pygame.init()
+altura = 1000
+largura = 800
 gameDisplay = pygame.display.set_mode((1000, 800))
 pygame.display.set_caption('Torre da escalada')
+# ajustar o papel de parede ao tamanho da tela
+tela_de_fundo = pygame.image.load('Castelo.jpg').convert()
+tela_de_fundo = pygame.transform.scale(tela_de_fundo,(altura, largura))
+
 
 # Carregamento das imagens
 cavaleiroImg = pygame.image.load('cv.jpg')
@@ -111,7 +117,13 @@ while not FIM and vidas > 0 and fase <= 5:
         CavaleiroX = 500
         cavaleiroY = 700
         plataformas = cria_plataformas()
-
-    pygame.display.update()
+    # CASO PERCA AS VIDAS TELA PRETA
+    elif vidas == 0:
+        pygame.quit()
+        pygame.display.update()
+        gameDisplay.fill(PRETO)
+        pygame.time.delay(120)
+        
+    
 
 pygame.quit()
